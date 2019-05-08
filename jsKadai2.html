@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="jsKadai2.css">
+    <script type="text/javascript" src="jsKadai2.js"></script>
+    <title>JavaScript課題2</title>
+  </head>
+  <body>
+    <h1>ToDoリスト</h1>
+    <ul> <!-- 選択肢 -->
+      <li><input type="radio" name="choice" value="all">すべて</li>
+      <li><input type="radio" name="choice" value="working">作業中</li>
+      <li><input type="radio" name="choice" value="done">完了</li>
+    </ul>
+    <table id=TBL>
+      <tr> <!-- 表タイトル -->
+        <th class="table-title">ID</th>
+        <th class="table-title">コメント</th>
+        <th class="table-title">状態</th>
+      </tr>
+    </table>
+    <h2>新規タスクの追加</h2>
+    <input type="text" id="new-task" >
+    <input type="button" id="addClick" value="追加">
+  </body>
+</html>

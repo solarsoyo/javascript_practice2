@@ -1,0 +1,17 @@
+/* リストを左寄せにするための書式設定 */
+ul {
+    text-align: left;
+    padding: 0;
+}
+
+/* リストの黒丸をなくし、横並びにするための書式設定 */
+li {
+    list-style: none;
+    display: inline;
+}
+
+/* テーブルタイトルを太字かつ大きいフォントにするための書式設定 */
+.table-title {
+    font-weight: bold;
+    font-size: 18px;
+}
