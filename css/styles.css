@@ -1,0 +1,8 @@
+/* 削除したタスクを非表示にする */
+.deletion-hidden {
+    display: none;
+}
+
+.status-hidden {
+    display: none;
+}
