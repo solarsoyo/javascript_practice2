@@ -7,11 +7,18 @@
   
   //追加ボタンをクリックすると、テーブルにタスクを追加する関数を呼び出す
   const addButton = document.getElementById('add-button');
-  addButton.addEventListener('click', addTask);
+  addButton.addEventListener('click', ()=> {
+    const newTask = document.getElementById('new-task').value;
+    //タスクが入力されていない場合は入力欄にエラーを表示。そのまま連打されても登録されていないよう、エラーメッセージも登録できないようにする
+    if (newTask !== "" && newTask !== "タスクを入力して下さい") {
+      addTask(newTask);
+    } else {
+      document.getElementById('new-task').value = "タスクを入力して下さい";
+    }
+  });
   
   //テーブル：tbodyタグ（id:tbl）の子要素に新しいタスクを追加する関数
-  function addTask() {
-    const newTask = document.getElementById('new-task').value;
+  function addTask(newTask) {
     const tbody = document.getElementById('tbl');
     const row = tbody.insertRow(key);
     const cell1 = row.insertCell(0);
