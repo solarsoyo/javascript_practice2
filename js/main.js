@@ -20,8 +20,16 @@
     const cell4 = row.insertCell(3);
     cell1.textContent = key;
     cell2.textContent = newTask;
-    cell3.innerHTML = `<input type="button" name="status-click" value="作業中">`;
-    cell4.innerHTML = `<input type="button" name="deletion-click" value="削除">`;
+    const cell3Input = document.createElement('input');
+    cell3Input.setAttribute('type','button');
+    cell3Input.setAttribute('name','status-click');
+    cell3Input.setAttribute('value',"作業中");
+    cell3.appendChild(cell3Input);
+    const cell4Input = document.createElement('input');
+    cell4Input.setAttribute('type','button');
+    cell4Input.setAttribute('name','deletion-click');
+    cell4Input.setAttribute('value',"削除");
+    cell4.appendChild(cell4Input); 
     key++;
     //入力した追加フォームを空にする
     document.getElementById('new-task').value = "";
