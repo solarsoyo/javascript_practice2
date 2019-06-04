@@ -25,6 +25,7 @@
     const cell2 = row.insertCell(1);
     const cell3 = row.insertCell(2);
     const cell4 = row.insertCell(3);
+    cell1.setAttribute('name','ID');
     cell1.textContent = key;
     cell2.textContent = newTask;
     const cell3Input = document.createElement('input');
@@ -41,7 +42,7 @@
     //入力した追加フォームを空にする
     document.getElementById('new-task').value = "";
     changeStatus();
-    deletion();
+    deletion(tbody);
   }
   
   //作業中ボタンをクリックすると完了ボタンに、完了ボタンをクリックすると作業中ボタンに変更する関数
@@ -59,16 +60,27 @@
   }
   
   //削除ボタンをクリックすると、その行を非表示にする関数
-  function deletion() {
+  function deletion(tbody) {
+    const deletionClick = document.getElementsByName('deletion-click');
     for (let i = 0; i < key; i++) {
-      const deletionClick = document.getElementsByName('deletion-click')[i];
-      deletionClick.onclick = ()=> {
+      deletionClick[i].onclick = ()=> {
         const row = document.getElementsByTagName('tr')[i+1];
-        row.classList.add('deletion-hidden');
+        tbody.removeChild(row);
+        renumbering();
       };
     }
   }
   
+  //削除したIDを振り直すための関数
+  function renumbering() {
+    const rows = document.getElementsByName('ID');
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].textContent = i;
+    }
+    //削除したID分のkey値を減らす
+    key--;
+  }
+
   //ラジオボタンのチェックを変更したときにdisplayChange関数が発動
   const displayButton = document.getElementsByName('state-selection');
   for　(let i = 0; i < displayButton.length; i++)　{
