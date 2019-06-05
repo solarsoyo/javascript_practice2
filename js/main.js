@@ -28,47 +28,41 @@
     cell1.setAttribute('name','ID');
     cell1.textContent = key;
     cell2.textContent = newTask;
-    const cell3Input = document.createElement('input');
-    cell3Input.setAttribute('type','button');
-    cell3Input.setAttribute('name','status-click');
-    cell3Input.setAttribute('value',"作業中");
-    cell3.appendChild(cell3Input);
-    const cell4Input = document.createElement('input');
-    cell4Input.setAttribute('type','button');
-    cell4Input.setAttribute('name','deletion-click');
-    cell4Input.setAttribute('value',"削除");
-    cell4.appendChild(cell4Input); 
+    addStatusButton(cell3);
+    addDeletionButton(cell4,tbody);
     key++;
     //入力した追加フォームを空にする
     document.getElementById('new-task').value = "";
-    changeStatus();
-    deletion(tbody);
   }
   
-  //作業中ボタンをクリックすると完了ボタンに、完了ボタンをクリックすると作業中ボタンに変更する関数
-  function changeStatus() {
-    for (let i = 0; i < key; i++) {
-      const doneClick = document.getElementsByName('status-click')[i];
-      doneClick.onclick = ()=> {
-        if (doneClick.value == "作業中") {
-          doneClick.value = "完了";
-        } else {
-          doneClick.value = "作業中";
-        }
-      };
-    }
+  // 状態ボタン（最初は作業中ボタン）を作成する関数
+  function addStatusButton(cell) {
+    const statusButton = document.createElement('input');
+    statusButton.setAttribute('type','button');
+    statusButton.setAttribute('name','status-click');
+    statusButton.setAttribute('value',"作業中");
+    cell.appendChild(statusButton);
+    // 状態ボタンをクリックしたときのイベント:作業中は完了に、完了は作業中に
+    statusButton.addEventListener('click', ()=> {
+      if (statusButton.value === "作業中") {
+        statusButton.value = "完了";
+      } else {
+        statusButton.value = "作業中";
+      }
+    });
   }
   
-  //削除ボタンをクリックすると、その行を非表示にする関数
-  function deletion(tbody) {
-    const deletionClick = document.getElementsByName('deletion-click');
-    for (let i = 0; i < key; i++) {
-      deletionClick[i].onclick = ()=> {
-        const row = document.getElementsByTagName('tr')[i+1];
-        tbody.removeChild(row);
-        renumbering();
-      };
-    }
+  // 削除ボタンを作成する関数
+  function addDeletionButton(cell,tbody) {
+    const deletionButton = document.createElement('input');
+    deletionButton.setAttribute('type','button');
+    deletionButton.setAttribute('value',"削除");
+    cell.appendChild(deletionButton);
+    // 削除ボタンをクリックしたときのイベント：親要素の親要素のtrタグを削除する
+    deletionButton.addEventListener('click', ()=> {
+      tbody.removeChild(deletionButton.parentNode.parentNode);
+      renumbering();
+    });
   }
   
   //削除したIDを振り直すための関数
