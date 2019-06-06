@@ -65,7 +65,7 @@
   
   //削除したIDを振り直すための関数
   function renumbering() {
-    const rows = document.querySelectorAll('[data-name]');
+    const rows = document.querySelectorAll('[data-name="ID"]');
     for (let i = 0; i < rows.length; i++) {
       rows[i].textContent = i;
     }
