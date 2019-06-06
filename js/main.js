@@ -25,7 +25,7 @@
     const cell2 = row.insertCell(1);
     const cell3 = row.insertCell(2);
     const cell4 = row.insertCell(3);
-    cell1.setAttribute('name','ID');
+    cell1.dataset.name = 'ID';
     cell1.textContent = key;
     cell2.textContent = newTask;
     addStatusButton(cell3);
@@ -39,7 +39,7 @@
   function addStatusButton(cell) {
     const statusButton = document.createElement('button');
     statusButton.textContent = "作業中";
-    statusButton.setAttribute('name','status-click');
+    statusButton.name = "status-click";
     cell.appendChild(statusButton);
     // 状態ボタンをクリックしたときのイベント:作業中は完了に、完了は作業中に
     statusButton.addEventListener('click', ()=> {
@@ -65,7 +65,7 @@
   
   //削除したIDを振り直すための関数
   function renumbering() {
-    const rows = document.getElementsByName('ID');
+    const rows = document.querySelectorAll('[data-name]');
     for (let i = 0; i < rows.length; i++) {
       rows[i].textContent = i;
     }
