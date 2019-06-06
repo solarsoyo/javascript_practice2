@@ -37,26 +37,24 @@
   
   // 状態ボタン（最初は作業中ボタン）を作成する関数
   function addStatusButton(cell) {
-    const statusButton = document.createElement('input');
-    statusButton.setAttribute('type','button');
+    const statusButton = document.createElement('button');
+    statusButton.textContent = "作業中";
     statusButton.setAttribute('name','status-click');
-    statusButton.setAttribute('value',"作業中");
     cell.appendChild(statusButton);
     // 状態ボタンをクリックしたときのイベント:作業中は完了に、完了は作業中に
     statusButton.addEventListener('click', ()=> {
-      if (statusButton.value === "作業中") {
-        statusButton.value = "完了";
+      if (statusButton.textContent === "作業中") {
+        statusButton.textContent = "完了";
       } else {
-        statusButton.value = "作業中";
+        statusButton.textContent = "作業中";
       }
     });
   }
   
   // 削除ボタンを作成する関数
   function addDeletionButton(cell,tbody) {
-    const deletionButton = document.createElement('input');
-    deletionButton.setAttribute('type','button');
-    deletionButton.setAttribute('value',"削除");
+    const deletionButton = document.createElement('button');
+    deletionButton.textContent = "削除";
     cell.appendChild(deletionButton);
     // 削除ボタンをクリックしたときのイベント：親要素の親要素のtrタグを削除する
     deletionButton.addEventListener('click', ()=> {
@@ -87,18 +85,18 @@
     const allCheck = document.querySelectorAll('input[type="radio"]')[0];
     const doingCheck = document.querySelectorAll('input[type="radio"]')[1];
     //「すべて」が選択されると全IDのstatus-hiddenクラスを取る
-    if(allCheck.checked == true) {
+    if(allCheck.checked === true) {
       for (let i = 0; i < key; i++) {
         const row = document.getElementsByTagName('tr')[i+1];
         row.classList.remove('status-hidden');
       } 
       //「作業中」をチェックしているときは状態が「完了」のタスクを非表示にする
-    } else if(doingCheck.checked == true) {
+    } else if(doingCheck.checked === true) {
       for (let i = 0; i < key; i++) {
         const row = document.getElementsByTagName('tr')[i+1];
         row.classList.remove('status-hidden');
-        const status = document.getElementsByName('status-click')[i].value;
-        if (status == "完了") {
+        const status = document.getElementsByName('status-click')[i].textContent;
+        if (status === "完了") {
           row.classList.add('status-hidden'); 
         } 
       } 
@@ -107,8 +105,8 @@
       for (let i = 0; i < key; i++) {
         const row = document.getElementsByTagName('tr')[i+1];
         row.classList.remove('status-hidden');
-        const status = document.getElementsByName('status-click')[i].value;
-        if (status == "作業中") {
+        const status = document.getElementsByName('status-click')[i].textContent;
+        if (status === "作業中") {
           row.classList.add('status-hidden'); 
         } 
       } 
