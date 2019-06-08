@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>JavaScript課題2</title>
+  </head>
+  <body>
+    <h1>ToDoリスト</h1>
+    <!-- 状態を選択する排他的なラジオボタン：起動時は「すべて」が選択されている -->
+    <input type="radio" name="state-selection" checked>すべて
+    <input type="radio" name="state-selection">作業中
+    <input type="radio" name="state-selection">完了
+    <!-- テーブルタグのToDoリスト：表題だけ -->
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>コメント</th><th>状態</th>
+        </tr>
+      </thead>
+      <tbody id="tbl"></tbody>
+    </table>
+    <!-- 新規タスクの入力欄 -->
+    <h2>新規タスクの追加</h2>
+    <input type="text" id="new-task" >
+    <button id="add-button">追加</button>
+    <!-- jsファイルの呼び出し -->
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

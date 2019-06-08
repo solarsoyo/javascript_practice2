@@ -1,0 +1,4 @@
+/* ステータスに応じてクラスを設定して非表示にする */
+.status-hidden {
+    display: none;
+}
